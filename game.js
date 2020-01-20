@@ -24,44 +24,58 @@ let c = canvas.getContext('2d');
 let snakex = 0;
 let snakey = 0;
 
-c.clearRect(0,0, canvas.width, canvas.height);
-c.beginPath();
-c.fillStyle = 'black';
-c.fillRect(snakex, snakey, 10, 10);
-c.stroke();
-
+let x
+let y
 // moves the snake in a particular direction
 window.onkeydown = function (event) {
+    event.target.value = ''
     if(event.key === '6') {
-        let x = 10;
-        let y = 0;
-        direction(x,y)
+        console.log(event.key)
+        x = 10;
+        y = 0;
+        direction()
     }
     if(event.key === '2') {
-        let x = 0;
-        let y = 10;
-        direction(x,y)
+        event.target.value = ''
+        console.log(event.key)
+        x = 0;
+        y = 10;
+        direction()
     }
     if(event.key === '4') {
-        let x = -10;
-        let y = 0;
-        direction(x,y)
+        event.target.value = ''
+        console.log(event.key)
+        x = -10;
+        y = 0;
+        direction()
     }
     if(event.key === '8') {
-        let x = 0;
-        let y = -10;
-        direction(x,y)
+        event.target.value = ''
+        console.log(event.key)
+        x = 0;
+        y = -10;
+        direction()
     }
 }
 
-function direction(x,y) {
-    setInterval(function () {
-        c.clearRect(0,0, canvas.width, canvas.height);
-        c.beginPath();
-        c.fillStyle = 'black';
-        c.fillRect(snakex, snakey, 10, 10);
-        c.stroke();
-        snakex = snakex + x;
-        snakey = snakey + y;
-    }, 100)
+c.beginPath();
+c.fillStyle = 'black';
+c.fillRect(snakex, snakey, 10, 10);
+
+function drawSnake() {
+    c.beginPath();
+    c.fillStyle = 'black';
+    c.fillRect(snakex, snakey, 10, 10);
+}
+
+
+function direction() {
+    c.clearRect(0,0, canvas.width, canvas.height);
+    
+    drawSnake();
+
+    snakex = snakex + x;
+    snakey = snakey + y;
+
+    setTimeout(direction, 1000)
 }
