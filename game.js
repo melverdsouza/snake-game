@@ -16,8 +16,14 @@ let c = canvas.getContext('2d');
 // snake food
 let foodx = 50;
 let foody = 50;
+let totalPoint = 0
 
 function snakeFoodPosition() {
+    totalPoint += 1;
+    let points = document.createTextNode(``)
+    document.getElementsByClassName('score')[0].appendChild(points)
+    points = document.createTextNode(`${totalPoint}`)
+    document.getElementsByClassName('score')[0].appendChild(points)
     foodx = Math.random() * canvas.width;
     foody = Math.random() * canvas.height;
     snakeFood()
@@ -102,5 +108,8 @@ function direction() {
 function gameover() {
     c.clearRect(0,0, canvas.width, canvas.height);
     c.font = "60px Arial";
+    c.fillStyle = 'red'
     c.fillText("Game Over", 250, 300);
+    alert(`You scored ${totalPoint} points!`)
+    break;
 }
