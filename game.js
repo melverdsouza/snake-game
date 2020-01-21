@@ -20,12 +20,12 @@ let totalPoint = 0
 
 function snakeFoodPosition() {
     totalPoint += 1;
-    let points = document.createTextNode(``)
-    document.getElementsByClassName('score')[0].appendChild(points)
-    points = document.createTextNode(`${totalPoint}`)
-    document.getElementsByClassName('score')[0].appendChild(points)
-    foodx = Math.random() * canvas.width;
-    foody = Math.random() * canvas.height;
+    // let points = document.createTextNode(``)
+    // document.getElementsByClassName('score')[0].appendChild(points)
+    // points = document.createTextNode(`Points: ${totalPoint}`)
+    // document.getElementsByClassName('score')[0].appendChild(points)
+    foodx = Math.random() * 790;
+    foody = Math.random() * 590;
     snakeFood()
 }
 
@@ -106,10 +106,12 @@ function direction() {
 // c.fillRect(50, 50, 10, 10);
 
 function gameover() {
+    console.log('gameover')
     c.clearRect(0,0, canvas.width, canvas.height);
-    c.font = "60px Arial";
+    c.font = "30px Arial";
     c.fillStyle = 'red'
-    c.fillText("Game Over", 250, 300);
-    alert(`You scored ${totalPoint} points!`)
-    break;
+    c.fillText(`Game Over you scored ${totalPoint} points.`, 250, 300);
+    setInterval(function reload() {
+        location.reload()
+    }, 3000)
 }
